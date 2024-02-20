@@ -1,5 +1,6 @@
 package com.example.eshop.config;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
@@ -13,13 +14,13 @@ import java.util.Locale;
 @Configuration
 public class I18nConfig implements WebMvcConfigurer {
 
-
     @Bean
     public LocaleResolver localeResolver() {
         final SessionLocaleResolver localeResolver = new SessionLocaleResolver();
         localeResolver.setDefaultLocale(new Locale("en","US"));
         return localeResolver;
     }
+
 
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
@@ -28,9 +29,11 @@ public class I18nConfig implements WebMvcConfigurer {
         return lci;
     }
 
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
     }
+
 
 }
