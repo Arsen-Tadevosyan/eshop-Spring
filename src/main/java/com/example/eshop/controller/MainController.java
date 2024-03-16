@@ -6,6 +6,7 @@ import com.example.eshop.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,13 +27,13 @@ public class MainController {
 
     private final ProductService productService;
 
-    @Value("${picture.upload.directory}")
+    @Value("${eshop.picture.upload.directory}")
     private String uploadDirectory;
 
 
     @GetMapping("/")
     public String mainPage(ModelMap modelMap) {
-        modelMap.addAttribute("products", productService.findAll());
+        modelMap.addAttribute("products", productService.findAll(PageRequest.of(0, 5)));
         modelMap.addAttribute("categories", categoryService.findAll());
         return "user/home";
     }
