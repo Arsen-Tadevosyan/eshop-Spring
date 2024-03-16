@@ -22,4 +22,10 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
+    private boolean active;
+
+    private String token;
+
+    private String picUrl;
 }
